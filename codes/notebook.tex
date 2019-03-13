@@ -141,7 +141,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{Chapter 2}
+    \title{Chapter 3}
     
     
     
@@ -280,625 +280,605 @@
     
 
     
-    \subsection{2.2 What is Algorithm
-Analysis?}\label{what-is-algorithm-analysis}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}32}]:} \PY{k+kn}{import} \PY{n+nn}{time}
-         \PY{k+kn}{import} \PY{n+nn}{timeit}
-         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
-         \PY{o}{\PYZpc{}} \PY{n}{matplotlib} \PY{n}{inline}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{def} \PY{n+nf}{sumofN}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{p}{:}
-            \PY{n}{thesum} \PY{o}{=} \PY{l+m+mi}{0}
-            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{n} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{p}{:}
-                \PY{n}{thesum} \PY{o}{=} \PY{n}{thesum} \PY{o}{+} \PY{n}{i}
-            \PY{k}{return} \PY{n}{thesum}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{sumofN}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-55
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{foo}\PY{p}{(}\PY{n}{tom}\PY{p}{)} \PY{p}{:}
-            \PY{n}{fred} \PY{o}{=} \PY{l+m+mi}{0}
-            \PY{k}{for} \PY{n}{bill} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{tom} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{p}{:}
-                \PY{n}{barney} \PY{o}{=} \PY{n}{bill}
-                \PY{n}{fred} \PY{o}{=} \PY{n}{fred} \PY{o}{+} \PY{n}{barney}
-        
-            \PY{k}{return} \PY{n}{fred}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{foo}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-55
-
-    \end{Verbatim}
-
-    \subparagraph{두 코드가 같은 기능을 하는 코드이지만, 변수명을 직관적으로
-사용하느냐에 따라 로직을 이해하는 데에 큰 차이가
-있다.}\label{uxb450-uxcf54uxb4dcuxac00-uxac19uxc740-uxae30uxb2a5uxc744-uxd558uxb294-uxcf54uxb4dcuxc774uxc9c0uxb9cc-uxbcc0uxc218uxba85uxc744-uxc9c1uxad00uxc801uxc73cuxb85c-uxc0acuxc6a9uxd558uxb290uxb0d0uxc5d0-uxb530uxb77c-uxb85cuxc9c1uxc744-uxc774uxd574uxd558uxb294-uxb370uxc5d0-uxd070-uxcc28uxc774uxac00-uxc788uxb2e4.}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{def} \PY{n+nf}{sumofN2}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{p}{:}
-            \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
-            \PY{n}{thesum} \PY{o}{=} \PY{l+m+mi}{0}
-            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{n} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{p}{:}
-                \PY{n}{thesum} \PY{o}{=} \PY{n}{thesum} \PY{o}{+} \PY{n}{i}
-            
-            \PY{n}{end\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
-            \PY{k}{return} \PY{n}{thesum}\PY{p}{,} \PY{n}{end\PYZus{}time} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{p}{:}
-            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sum is }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ required }\PY{l+s+si}{\PYZpc{}10.7f}\PY{l+s+s1}{ seconds.}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}}\PY{k}{sumofN2}(10000))
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-Sum is 50005000 required  0.0002739 seconds.
-Sum is 50005000 required  0.0002794 seconds.
-Sum is 50005000 required  0.0002823 seconds.
-Sum is 50005000 required  0.0002728 seconds.
-Sum is 50005000 required  0.0002732 seconds.
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{p}{:}
-            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sum is }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ required }\PY{l+s+si}{\PYZpc{}10.7f}\PY{l+s+s1}{ seconds}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}}\PY{k}{sumofN2}(100000))
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-Sum is 5000050000 required  0.0029416 seconds
-Sum is 5000050000 required  0.0029223 seconds
-Sum is 5000050000 required  0.0030088 seconds
-Sum is 5000050000 required  0.0029216 seconds
-Sum is 5000050000 required  0.0029919 seconds
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{p}{:}
-            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sum is }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ required }\PY{l+s+si}{\PYZpc{}10.7f}\PY{l+s+s1}{ seconds}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}}\PY{k}{sumofN2}(1000000))
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-Sum is 500000500000 required  0.0317781 seconds
-Sum is 500000500000 required  0.0329185 seconds
-Sum is 500000500000 required  0.0347099 seconds
-Sum is 500000500000 required  0.0340879 seconds
-Sum is 500000500000 required  0.0328267 seconds
-
-    \end{Verbatim}
-
-    \subparagraph{sumofN2 함수는}\label{sumofn2-uxd568uxc218uxb294}
-
-\(\sum_{i=1}^{n}i = \frac{(n)(n + 1)}{2}\) 의 시간복잡도를 갖는다.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{def} \PY{n+nf}{sumofN3}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{p}{:}
-             \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
-             \PY{n}{thesum} \PY{o}{=} \PY{p}{(}\PY{n}{n} \PY{o}{*} \PY{p}{(}\PY{n}{n} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
-             \PY{n}{end\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
-             \PY{k}{return} \PY{n}{thesum}\PY{p}{,} \PY{n}{end\PYZus{}time} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)} \PY{p}{:}
-             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sum is }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ required }\PY{l+s+si}{\PYZpc{}10.7f}\PY{l+s+s1}{ seconds}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}}\PY{k}{sumofN3}(10 ** i))
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-Sum is 50005000 required  0.0000005 seconds
-Sum is 5000050000 required  0.0000005 seconds
-Sum is 500000500000 required  0.0000005 seconds
-
-    \end{Verbatim}
-
-    \subparagraph{sumofN3 함수는 n에 상관없이 항상 동일한 적은 시간이
-소요된다.}\label{sumofn3-uxd568uxc218uxb294-nuxc5d0-uxc0c1uxad00uxc5c6uxc774-uxd56duxc0c1-uxb3d9uxc77cuxd55c-uxc801uxc740-uxc2dcuxac04uxc774-uxc18cuxc694uxb41cuxb2e4.}
-
-\subparagraph{우리는 이러한 알고리즘의 복잡도를 언어, 컴퓨터 성능 등과
-무관하게 표현할 필요가
-있다.}\label{uxc6b0uxb9acuxb294-uxc774uxb7ecuxd55c-uxc54cuxace0uxb9acuxc998uxc758-uxbcf5uxc7a1uxb3c4uxb97c-uxc5b8uxc5b4-uxcef4uxd4e8uxd130-uxc131uxb2a5-uxb4f1uxacfc-uxbb34uxad00uxd558uxac8c-uxd45cuxd604uxd560-uxd544uxc694uxac00-uxc788uxb2e4.}
-
-    \subsubsection{2.3 Big-O Notation}\label{big-o-notation}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{def} \PY{n+nf}{listing2}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{p}{:}
-             \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{5}
-             \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{6}
-             \PY{n}{c} \PY{o}{=} \PY{l+m+mi}{10}
-             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{p}{:}
-                 \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{p}{:}
-                     \PY{n}{x} \PY{o}{=} \PY{n}{i} \PY{o}{*} \PY{n}{i}
-                     \PY{n}{y} \PY{o}{=} \PY{n}{j} \PY{o}{*} \PY{n}{j}
-                     \PY{n}{z} \PY{o}{=} \PY{n}{i} \PY{o}{*} \PY{n}{j}
-             \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{p}{:}
-                 \PY{n}{w} \PY{o}{=} \PY{n}{a} \PY{o}{*} \PY{n}{k} \PY{o}{+} \PY{l+m+mi}{45}
-                 \PY{n}{v} \PY{o}{=} \PY{n}{b} \PY{o}{*} \PY{n}{b}
-             \PY{n}{d} \PY{o}{=} \PY{l+m+mi}{33}
-\end{Verbatim}
-
-
-    \subparagraph{이 함수의 시간복잡도는
-얼마일까?}\label{uxc774-uxd568uxc218uxc758-uxc2dcuxac04uxbcf5uxc7a1uxb3c4uxb294-uxc5bcuxb9c8uxc77cuxae4c}
-
-세 개의 상수 할당 (3), 이중 for문에서 \(n^2\)의 복잡도인 변수 세 개
-(\(3n^2\)), 두 번째 for문에서 \(n\)의 복잡도인 변수 두 개 (\(2n\)),
-마지막 상수 할당 (1)\\
-즉, \(3 + 3n^2 + 2n + 1 = 3n^2 + 2n + 4\)이고, 이를 Big-O Notation으로
-표현하면,\\
-\(O(n^2)\)이다.
-
-    \begin{verbatim}
-<figcaption>figure 1. big-o running time</figcaption>
-\end{verbatim}
-
-    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
-
-\begin{verbatim}
-<figcaption>figure 2. big-omega running time</figcaption>
-\end{verbatim}
-
-    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
-
-\begin{verbatim}
-<figcaption>figure 3. big-theta running time</figcaption>
-\end{verbatim}
-
-    \subsubsection{2.4 An Anagram Detection
-Example}\label{an-anagram-detection-example}
-
-    Anagram이란 단어의 알파벳을 재조합해서 새로운 다른 단어로 바꾸는 일종의
-말장난이다.\\
-예) 'heart' \textless{}-\textgreater{} 'earth', 'python'
-\textless{}-\textgreater{} 'typhon'
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{k}{def} \PY{n+nf}{anagramsolver1}\PY{p}{(}\PY{n}{word1}\PY{p}{,} \PY{n}{word2}\PY{p}{)} \PY{p}{:}
-             \PY{n}{alist} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{word2}\PY{p}{)}
-             \PY{n}{pos1} \PY{o}{=} \PY{l+m+mi}{0}
-             \PY{n}{stillOK} \PY{o}{=} \PY{k+kc}{True}
-         
-             \PY{k}{while} \PY{n}{pos1} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{word1}\PY{p}{)} \PY{o+ow}{and} \PY{n}{stillOK} \PY{p}{:}
-                 \PY{n}{pos2} \PY{o}{=} \PY{l+m+mi}{0}
-                 \PY{n}{found} \PY{o}{=} \PY{k+kc}{False}
-                 \PY{k}{while} \PY{n}{pos2} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{alist}\PY{p}{)} \PY{o+ow}{and} \PY{o+ow}{not} \PY{n}{found}\PY{p}{:}
-                     \PY{k}{if} \PY{n}{word1}\PY{p}{[}\PY{n}{pos1}\PY{p}{]} \PY{o}{==} \PY{n}{alist}\PY{p}{[}\PY{n}{pos2}\PY{p}{]} \PY{p}{:}
-                         \PY{n}{found} \PY{o}{=} \PY{k+kc}{True}
-                     \PY{k}{else}\PY{p}{:}
-                         \PY{n}{pos2} \PY{o}{=} \PY{n}{pos2} \PY{o}{+} \PY{l+m+mi}{1}
-         
-                 \PY{k}{if} \PY{n}{found} \PY{p}{:}
-                     \PY{n}{alist}\PY{p}{[}\PY{n}{pos2}\PY{p}{]} \PY{o}{=} \PY{k+kc}{None}
-                 \PY{k}{else} \PY{p}{:}
-                     \PY{n}{stillOK} \PY{o}{=} \PY{k+kc}{False}
-         
-                 \PY{n}{pos1} \PY{o}{=} \PY{n}{pos1} \PY{o}{+} \PY{l+m+mi}{1}
-         
-             \PY{k}{return} \PY{n}{stillOK}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{anagramsolver1}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dcba}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}14}]:} True
-\end{Verbatim}
-            
-    이 코드는 두 단어의 이중 loop를 통해 한 알파벳씩 비교하고, 단어 1에
-존재하는 알파벳이 단어 2에 존재하지 않으면 False를 반환하는 기초적인
-알고리즘으로 짜여져 있다.\\
-즉, 이 알고리즘의 시간복잡도는,\\
-\(\sum_{i = 1}^ni = \frac{n(n + 1)}{2} = \frac{1}{2}n^2 + \frac{1}{2}n\)이고,
-Big-O Notation으로는 \(O{n^2}\)로 표현할 수 있다.
-
-    \subsubsection{2.4.2 Solution 2 : Sort and
-Compare}\label{solution-2-sort-and-compare}
-
-    Anagram을 두 단어를 구성하는 알파벳은 동일하므로 알파벳 순으로 sort하면
-같은 string이 반환되어야 한다.\\
-이를 이용한 sort and compare 방법으로 solver를 만들어보자.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{def} \PY{n+nf}{anagramsolver2}\PY{p}{(}\PY{n}{word1}\PY{p}{,} \PY{n}{word2}\PY{p}{)} \PY{p}{:}
-             \PY{n}{alist1} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{word1}\PY{p}{)}
-             \PY{n}{alist2} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{word2}\PY{p}{)}
-         
-             \PY{n}{alist1}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{p}{)}
-             \PY{n}{alist2}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{p}{)}
-             
-             \PY{n}{pos} \PY{o}{=} \PY{l+m+mi}{0}
-             \PY{n}{matches} \PY{o}{=} \PY{k+kc}{True}
-         
-             \PY{k}{while} \PY{n}{pos} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{word1}\PY{p}{)} \PY{o+ow}{and} \PY{n}{matches} \PY{p}{:}
-                 \PY{k}{if} \PY{n}{alist1}\PY{p}{[}\PY{n}{pos}\PY{p}{]} \PY{o}{==} \PY{n}{alist2}\PY{p}{[}\PY{n}{pos}\PY{p}{]} \PY{p}{:}
-                     \PY{n}{pos} \PY{o}{=} \PY{n}{pos} \PY{o}{+} \PY{l+m+mi}{1}
-                 \PY{k}{else} \PY{p}{:}
-                     \PY{n}{matches} \PY{o}{=} \PY{k+kc}{False}
-                     
-             \PY{k}{return} \PY{n}{matches}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{anagramsolver2}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{edcba}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:} True
-\end{Verbatim}
-            
-    언뜻 보기에 이 알고리즘의 시간복잡도는 \(O(n)\)인 것처럼 보이지만,
-python의 sort 메소드를 두 번 사용했기 때문에, 그렇지 않다.\\
-일반적으로 sort 알고리즘의 시간복잡도는 \(O(n^2)\)이거나,
-\(O(n\log{n})\)이므로, 이 알고리즘의 시간복잡도도 그와 같을 것이다.
-
-    \subsubsection{2.4.3 Brute Force}\label{brute-force}
-
-    Brute Force는 모든 가능한 경우를 다 검토하는 방법이다. Anagram을
-확인하는 문제에서는, 두 단어의 알파벳들로 만들 수 있는 모든 문자열을
-만들어볼 것이다.\\
-첫 번째 단어 word1에 n개의 알파벳이 있다고 하면, \(n!\)개의 가능한
-문자열을 만들 수 있다.\\
-만약 첫 번째 단어 word1이 길이가 20이라면, 총
-\(20! = 2,432,902,008,176,640,000\)의 경우의 수가 생기며, 만약 1초에
-하나씩 연산할 수 있다고 한다면, 총 77,146,816,596년이 걸린다. 이 방법은
-좋은 방법이 되지 않을 것이므로 건너뛰도록 한다.
-
-    \subsubsection{2.4.4 Count and Compare}\label{count-and-compare}
-
-    두 단어가 Anagram이라면, 두 단어는 같은 수의 알파벳을 갖고 있을 것이다.
-즉, 같은 수의 a, 같은 수의 b, ..., 같은 수의 z를 갖고 있을 것이다.\\
-알파벳은 총 26개이므로, 26개의 count 리스트를 작성하면 된다. 각 단어의
-iteration을 돌며 count 리스트를 갱신한 후, 두 단어의 count 리스트를
-비교하면 된다.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{def} \PY{n+nf}{anagramsolver3}\PY{p}{(}\PY{n}{word1}\PY{p}{,} \PY{n}{word2}\PY{p}{)}\PY{p}{:}
-             \PY{n}{c1} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{l+m+mi}{26}
-             \PY{n}{c2} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{l+m+mi}{26}
-         
-             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{word1}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-                 \PY{n}{pos} \PY{o}{=} \PY{n+nb}{ord}\PY{p}{(}\PY{n}{word1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{ord}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 문자열의 ord는 유니코드 번호를 반환하는 python 내장 함수}
-                 \PY{n}{c1}\PY{p}{[}\PY{n}{pos}\PY{p}{]} \PY{o}{=} \PY{n}{c1}\PY{p}{[}\PY{n}{pos}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{1}
-         
-             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{word2}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-                 \PY{n}{pos} \PY{o}{=} \PY{n+nb}{ord}\PY{p}{(}\PY{n}{word2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{ord}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-                 \PY{n}{c2}\PY{p}{[}\PY{n}{pos}\PY{p}{]} \PY{o}{=} \PY{n}{c2}\PY{p}{[}\PY{n}{pos}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{1}
-         
-             \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
-             \PY{n}{stillOK} \PY{o}{=} \PY{k+kc}{True}
-             \PY{k}{while} \PY{n}{j} \PY{o}{\PYZlt{}} \PY{l+m+mi}{26} \PY{o+ow}{and} \PY{n}{stillOK}\PY{p}{:}
-                 \PY{k}{if} \PY{n}{c1}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{==} \PY{n}{c2}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{:}
-                     \PY{n}{j} \PY{o}{=} \PY{n}{j} \PY{o}{+} \PY{l+m+mi}{1}
-                 \PY{k}{else}\PY{p}{:}
-                     \PY{n}{stillOK} \PY{o}{=} \PY{k+kc}{False}
-         
-             \PY{k}{return} \PY{n}{stillOK}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{anagramsolver3}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{apple}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pleap}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:} True
-\end{Verbatim}
-            
-    이 방법으로는 이중 loop가 존재하지 않고, 복잡도 n인 loop 두 개와, 복잡도
-26인 loop 하나로 이루어져 있으므로,\\
-\(2n + 26\)의 복잡도를 가지고 있다. 즉, Big-O로 표현하면 \(O(n)\)의
-시간복잡도를 가지고 있는 알고리즘이다.
-
-    또, 이전 두 알고리즘과는 달리 단어 1에 사용된 알파벳이 모두 단어 2에
-사용되었더라도 단어의 길이가 다르면 False를 반환한다.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{anagramsolver1}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{anagramsolver2}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{anagramsolver3}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-True True False
-
-    \end{Verbatim}
-
-    \subsubsection{2.5 Performance of Python Data
-Structures}\label{performance-of-python-data-structures}
-
-    이제 파이썬의 기본 자료구조가 얼마나 효율적으로 작동하는지 알아보도록
-한다. (list와 dictionary)
-
-    \subsubsection{2.6 Lists}\label{lists}
-
-    리스트를 만드는 가장 흔한 연산은 index와 index에 할당하기이다. 이 연산은
-리스트의 크기와 관계없이 \(O(1)\)의 시간복잡도를 갖는다.\\
-만들어진 리스트의 크기를 늘이는 것 역시 고려해야 한다. 두 가지 방법이
-있는데, 리스트에 append하는 방법과 concatenate하는 방법이 있다.
-append하는 방법은 \(O(1)\)의 시간복잡도를, concatenate는 \(O(k)\)의
-시간복잡도를 갖는다.(k는 붙여지는 리스트의 길이)
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{def} \PY{n+nf}{test1}\PY{p}{(}\PY{p}{)}\PY{p}{:}
-             \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{:}
-                 \PY{n}{l} \PY{o}{=} \PY{n}{l} \PY{o}{+} \PY{p}{[}\PY{n}{i}\PY{p}{]}
-         
-         \PY{k}{def} \PY{n+nf}{test2}\PY{p}{(}\PY{p}{)}\PY{p}{:}
-             \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{:}
-                 \PY{n}{l}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{p}{)}
-         
-         \PY{k}{def} \PY{n+nf}{test3}\PY{p}{(}\PY{p}{)}\PY{p}{:}
-             \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{n}{i} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{]}
-         
-         \PY{k}{def} \PY{n+nf}{test4}\PY{p}{(}\PY{p}{)}\PY{p}{:}
-             \PY{n}{l} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{t1} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test1()}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import test1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{concatenate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t1}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{milliseconds}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-concatenate 0.7605246701277792 milliseconds
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{t2} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test2()}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import test2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{append}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t2}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{milliseconds}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-append 0.03840660606510937 milliseconds
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{t3} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test3()}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import test3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{comprehension}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t3}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{milliseconds}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-comprehension 0.01806196477264166 milliseconds
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{t4} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test4()}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import test4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{list range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t4}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{milliseconds}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-list range 0.011708447011187673 milliseconds
-
-    \end{Verbatim}
-
-    Concatenate(리스트에 리스트를 더하는 방법)이 가장 느린 것으로 나타나며,
-append, comprehension, range함수를 이용한 리스트 만들기가 가장 빠른
-것으로 보인다. 똑같이 for loop을 사용하더라도, list comprehension을
-이용한 방법이 append를 이용한 방법보다 빠르다.
-
-    \begin{verbatim}
-<figcaption>table 1. 'big-o of python list methos'</figcaption>
-\end{verbatim}
-
-    이제 리스트의 가장 마지막 끝 값을 반환(하고 리스트에서 제거)하는 pop
-메소드를 이용하여 간단한 실험을 할 것이다.\\
-pop() 메소드는 리스트의 길이에 관계없이 일정한 시간복잡도를 갖고(pop()의
-시간복잡도는 \(O(1)\)이다.),\\
-pop(i) 메소드의 시간 복잡도는 리스트의 길이에 영향을 받는다는 것을
-알아볼 것이다.(pop(i)의 시간복잡도는 \(O(n)\)이다.)
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{popzero} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x.pop(0)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
-                                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         
-         \PY{n}{popend} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x.pop()}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
-                               \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{x} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2000000}\PY{p}{)}\PY{p}{)}
-         \PY{n}{popend}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:} 4.8983143642544746e-05
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{x} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{)}
-         \PY{n}{popend}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}27}]:} 4.891003482043743e-05
-\end{Verbatim}
-            
-    pop 메소드에 index를 주지 않고 가장 마지막 값을 반환하라고 할 때에는
-리스트의 길이에 관계없이 일정한 실행 속도를 나타낸다.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{x} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2000000}\PY{p}{)}\PY{p}{)}
-         \PY{n}{popzero}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}28}]:} 0.9004948339425027
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{x} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{)}
-         \PY{n}{popzero}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}29}]:} 0.0010549789294600487
-\end{Verbatim}
-            
-    index를 인자로 주었을 때에는 리스트의 길이에 따라 실행 속도가 변하는
-것을 볼 수 있다.\\
-그렇다면 우리는 과연 이 method가 리스트의 길이에 따라 선형적인
-관계(시간복잡도가 \(O(n)\))임을 어떻게 알 수 있을까?\\
-다음의 간단한 그래프를 통해 알아보자.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{pts} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{)}
-         \PY{n}{pzs} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{)}
-         \PY{n}{popzero} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x.pop(0)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
-                         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{popend} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x.pop()}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
-                        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{x\PYZus{}ax} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1000000}\PY{p}{,}\PY{l+m+mi}{100000001}\PY{p}{,}\PY{l+m+mi}{10000000}\PY{p}{)}
-         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{x\PYZus{}ax} \PY{p}{:}
-             \PY{n}{x} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
-             \PY{n}{pt} \PY{o}{=} \PY{n}{popend}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
-             \PY{n}{x} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
-             \PY{n}{pz} \PY{o}{=} \PY{n}{popzero}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
-             \PY{n}{pts}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pt}\PY{p}{)}
-             \PY{n}{pzs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pz}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}ax}\PY{p}{,} \PY{n}{pzs}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x\PYZus{}ax}\PY{p}{,} \PY{n}{pts}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{popzero}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{popend}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}41}]:} <matplotlib.legend.Legend at 0x7f51c5b6c898>
-\end{Verbatim}
-            
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_60_1.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \subsubsection{2.7 Dictionaries}\label{dictionaries}
-
-    우리가 알아볼 두 번째 파이썬 자료구조 형태는 dictionary이다. 후에
-dictionary를 만드는 여러 방법들을 알아볼텐데, 우선 여기서는 시간복잡도
-관점에서만 탐구해보고자 한다.\\
-자료구조에서 값을 가져오는 것이나 할당하는 것은 리스트와
-동일하게(list{[}i{]}) \(O(1)\)의 시간복잡도를 갖는다.\\
-경우에 따라서 get item, set item, contains(in)의 경우 \(O(n)\)의
-시간복잡도를 갖는 경우도 있는데, 이 경우에 대해서는 나중 챕터에서 알아볼
-것이다.
-
-    \begin{verbatim}
-<figcaption>table 2. 'big-o of python dictionary methos'</figcaption>
-\end{verbatim}
-
-    이제 동일한 task를 list와 dictionary를 이용하여 수행한 후 수행 시간을
-비교해보겠다. list에서 contains를 확인하는 것은 \(O(n)\)의 시간복잡도를,
-dictionary에서 contains를 확인하는 것은 \(O(1)\)의 시간복잡도를 갖는다는
-것을 간단한 실험을 통해 확인해보고자 한다.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}44}]:} \PY{k+kn}{import} \PY{n+nn}{random}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{list\PYZus{}times} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{)}
-         \PY{n}{dict\PYZus{}times} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{)}
-         \PY{n}{x\PYZus{}ax} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10000}\PY{p}{,}\PY{l+m+mi}{1000001}\PY{p}{,}\PY{l+m+mi}{20000}\PY{p}{)}
-         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{x\PYZus{}ax} \PY{p}{:}
-             \PY{n}{t} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{random.randrange(}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{) in x}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{k}{i},
-                              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import random,x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-             \PY{n}{x} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
-             \PY{n}{list\PYZus{}time} \PY{o}{=} \PY{n}{t}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{)}
-             \PY{n}{x} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{j}\PY{p}{:}\PY{k+kc}{None} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{\PYZcb{}}
-             \PY{n}{dict\PYZus{}time} \PY{o}{=} \PY{n}{t}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{)}
-             \PY{n}{list\PYZus{}times}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{list\PYZus{}time}\PY{p}{)}
-             \PY{n}{dict\PYZus{}times}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}time}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}ax}\PY{p}{,} \PY{n}{list\PYZus{}times}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x\PYZus{}ax}\PY{p}{,} \PY{n}{dict\PYZus{}times}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{list contains}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dictionary contains}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}48}]:} <matplotlib.legend.Legend at 0x7f518b738940>
-\end{Verbatim}
-            
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_67_1.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \subsubsection{2.8 Summary}\label{summary}
+    \subsubsection{3.2 Linear Structures}\label{linear-structures}
+
+    Stacks, Queues, Deques, Lists의 네 가지 Data Structure에 대해 공부할
+것이다. 이 데이터 구조를 Linear Structure(선형구조)라고 하는데, 이는
+데이터가 다른 데이터들과 위치상의 상관관계(즉, 순서)를 가지고 있는 것을
+말한다.
+
+Linear Structure는 두 가지의 끝 지점을 가지고 있다. 왼쪽 끝과 오른쪽 끝,
+혹은 앞과 뒤로 나누거나, top과 base로도 구분할 수 있다. 위의 나열된 네
+가지 데이터구조는 데이터를 추가하고 제거하는 방식의 차이에 따라 구분할
+수 있다.
+
+    \subsubsection{3.3 What is a Stack?}\label{what-is-a-stack}
+
+    Stack이란 item의 추가와 삭제가 항상 동일한 end에서 발생하는
+자료구조이다.(데이터 추가와 삭제 모두 하나의 end에서만 발생한다.) item을
+삭제할 때 가장 최근에 추가했던 데이터가 삭제되는 \textbf{LIFO(Last-in,
+first-out)} 방식의 자료구조이다.
+
+이를 이해하기 위한 가장 쉬운 예시 중 하나는 책상에 책 쌓아올리기다.
+책상에 책을 모두 쌓아올린 뒤, 다시 책을 꺼낼 때엔 어떻게 하는가? 가장
+위에 있는 책(가장 최근에 쌓아올린 책)부터 책을 꺼낼 것이다. 또, 인터넷
+브라우저(크롬, IE 등)로 웹서핑을 할 때를 생각해보자. 뒤로가기 버튼은
+항상 바로 이전의 웹페이지(가장 최근에 탐색했던 페이지)로 이동하게 한다.
+계속 뒤로가기 버튼을 누르다 보면 언젠가 홈 웹페이지(base end의 페이지)로
+되돌아갈 것이다.
+
+    \subsubsection{3.4 The Stack Abstract Data
+Type}\label{the-stack-abstract-data-type}
+
+    stack abstract 데이터타입은 다음과같은 명령어로 구성되어 있다.
 
     \begin{itemize}
 \tightlist
 \item
-  알고리즘 분석은 알고리즘과는 독립적으로 구현되는 알고리즘 측정
-  방법이다.
+  \texttt{Stack()} : 비어있는 새로운 스택을 반환한다. parameter는
+  필요하지 않다.
 \item
-  Big-O 시간복잡도는 문제의 크기를 측정하는 중요한 metric이다.
+  \texttt{push(item)} : 새로운 item을 stack의 top에 넣는다. item param가
+  필요하고, return은 없다.
+\item
+  \texttt{pop()} : stack의 top에 있는 item을 반환한다. param는 필요하지
+  않고 stack에서 반환된 item이 삭제된다.\\
+\item
+  \texttt{peek()} : stack의 top에 있는 item을 반환하지만 stack은
+  수정되지 않는다.\\
+\item
+  \texttt{isEmpty()} : stack이 비어있는지를 반환한다. boolean값으로
+  반환한다.\\
+\item
+  \texttt{size()} : stack에 존재하는 item 개수를 반환한다. integer값을
+  반환한다.
 \end{itemize}
+
+    다음은 stack 자료구조를 생성하고, 여러 method 실행결과와 stack 상태를
+나타낸 것이다.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{structures}\PY{n+nn}{.}\PY{n+nn}{Stack} \PY{k}{import} \PY{n}{Stack}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{s} \PY{o}{=} \PY{n}{Stack}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True []
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{push}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+None [4]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{push}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+None [4, 'dog']
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{peek}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+dog [4, 'dog']
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{push}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+None [4, 'dog', True]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3 [4, 'dog', True]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+False [4, 'dog', True]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{push}\PY{p}{(}\PY{l+m+mf}{8.4}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+None [4, 'dog', True, 8.4]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+8.4 [4, 'dog', True]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True [4, 'dog']
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2 [4, 'dog']
+
+    \end{Verbatim}
+
+    \subsubsection{3.6 Simple Challenge : Balanced
+Parentheses}\label{simple-challenge-balanced-parentheses}
+
+    다음 예시에서 Parentheses(괄호)는 모두 쌍으로 이루어져있다.
+
+    \begin{quote}
+(()()()())\\
+(((())))\\
+(()((())()))
+\end{quote}
+
+    다음 예시는 쌍이 맞지 않는 괄호들이다.
+
+    \begin{quote}
+((((((())\\
+()))\\
+(()()(()
+\end{quote}
+
+    이제 우리는 괄호로 이루어진 string이 balanced인지 그렇지 않은지를
+판별하는 알고리즘을 만들고자 한다. 괄호는 가장 마지막에 열린 괄호가 가장
+빨리 닫히고, 가장 처음에 열린 괄호가 가장 마지막에 닫힌다. stack을
+어떻게 이 알고리즘에 써야할지 이 특징이 알려준다.
+
+빈 스택에서 시작해서, 열린 괄호를 만나면 stack에 push하고, 닫힌 괄호를
+만나면, stack에서 pop하면 된다. 만약 string을 모두 읽었는데 stack에
+item이 남아있거나, 빈 stack에서 pop을 시도한다면, 그 괄호는 balance하지
+않은 괄호이다.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{k}{def} \PY{n+nf}{parChecker}\PY{p}{(}\PY{n}{string}\PY{p}{)} \PY{p}{:}
+             \PY{n}{s} \PY{o}{=} \PY{n}{Stack}\PY{p}{(}\PY{p}{)}
+             \PY{n}{balanced} \PY{o}{=} \PY{k+kc}{True}
+             \PY{n}{index} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{while} \PY{n}{index} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{string}\PY{p}{)} \PY{o+ow}{and} \PY{n}{balanced} \PY{p}{:}
+                 \PY{n}{symbol} \PY{o}{=} \PY{n}{string}\PY{p}{[}\PY{n}{index}\PY{p}{]}
+                 \PY{k}{if} \PY{n}{symbol} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:}
+                     \PY{n}{s}\PY{o}{.}\PY{n}{push}\PY{p}{(}\PY{n}{symbol}\PY{p}{)}
+                 \PY{k}{else} \PY{p}{:}
+                     \PY{k}{if} \PY{n}{s}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)} \PY{p}{:}
+                         \PY{n}{balanced} \PY{o}{=} \PY{k+kc}{False}
+                     \PY{k}{else} \PY{p}{:}
+                         \PY{n}{s}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}
+                 
+                 \PY{n}{index} \PY{o}{=} \PY{n}{index} \PY{o}{+} \PY{l+m+mi}{1}
+                 
+             \PY{k}{if} \PY{n}{balanced} \PY{o+ow}{and} \PY{n}{s}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)} \PY{p}{:}
+                 \PY{k}{return} \PY{k+kc}{True}
+             \PY{k}{else} \PY{p}{:}
+                 \PY{k}{return} \PY{k+kc}{False}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{parChecker}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{((()))}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} True
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{parChecker}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(()}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} False
+\end{Verbatim}
+            
+    \subsubsection{3.7 Balanced Symbols (A General
+Case)}\label{balanced-symbols-a-general-case}
+
+    괄호 판별기는 Balanced Symbols의 특별한 케이스이다. 파이썬에서도 ()와
+\{\}, {[}{]}이 각 tuple, dictionary, list를 만드는 데에 사용된다. 다음의
+예제들은 모두 Balanced Symbol이다.
+
+    \begin{quote}
+\{ \{ ( {[} {]} {[} {]} ) \} ( ) \}\\
+{[} {[} \{ \{ ( ( ) ) \} \} {]} {]} {[} {]} {[} {]} {[} {]} ( ) \{ \}
+\end{quote}
+
+    다음의 string은 모두 not balanced string이다.
+
+    \begin{quote}
+( {[} ) {]}\\
+( ( ( ) {]} ) )\\
+{[} \{ ( ) {]}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{def} \PY{n+nf}{parChecker}\PY{p}{(}\PY{n}{string}\PY{p}{)} \PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{matches}\PY{p}{(}\PY{n+nb}{open}\PY{p}{,} \PY{n}{close}\PY{p}{)} \PY{p}{:}
+                 \PY{n}{opens} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{([}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}
+                 \PY{n}{closers} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{)]\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}
+                 \PY{k}{return} \PY{n}{opens}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n+nb}{open}\PY{p}{)} \PY{o}{==} \PY{n}{closers}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n}{close}\PY{p}{)}
+             
+             \PY{n}{s} \PY{o}{=} \PY{n}{Stack}\PY{p}{(}\PY{p}{)}
+             \PY{n}{balanced} \PY{o}{=} \PY{k+kc}{True}
+             \PY{n}{index} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{while} \PY{n}{index} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{string}\PY{p}{)} \PY{o+ow}{and} \PY{n}{balanced} \PY{p}{:}
+                 \PY{n}{symbol} \PY{o}{=} \PY{n}{string}\PY{p}{[}\PY{n}{index}\PY{p}{]}
+                 \PY{k}{if} \PY{n}{symbol} \PY{o+ow}{in} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{([}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:}
+                     \PY{n}{s}\PY{o}{.}\PY{n}{push}\PY{p}{(}\PY{n}{symbol}\PY{p}{)}
+                 \PY{k}{else} \PY{p}{:}
+                     \PY{k}{if} \PY{n}{s}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)} \PY{p}{:}
+                         \PY{n}{balanced} \PY{o}{=} \PY{k+kc}{False}
+                     \PY{k}{else} \PY{p}{:}
+                         \PY{n}{top} \PY{o}{=} \PY{n}{s}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}
+                         \PY{k}{if} \PY{o+ow}{not} \PY{n}{matches}\PY{p}{(}\PY{n}{top}\PY{p}{,} \PY{n}{symbol}\PY{p}{)} \PY{p}{:}
+                             \PY{n}{balanced} \PY{o}{=} \PY{k+kc}{False}
+                 \PY{n}{index} \PY{o}{=} \PY{n}{index} \PY{o}{+} \PY{l+m+mi}{1}
+                 
+             \PY{k}{if} \PY{n}{balanced} \PY{o+ow}{and} \PY{n}{s}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)} \PY{p}{:}
+                 \PY{k}{return} \PY{k+kc}{True}
+             \PY{k}{else} \PY{p}{:}
+                 \PY{k}{return} \PY{k+kc}{False}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{parChecker}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZob{}\PYZob{}}\PY{l+s+s1}{([][])\PYZcb{}()\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{parChecker}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{[}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{()]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+False
+
+    \end{Verbatim}
+
+    \subsubsection{3.8 Converting Decimal Numbers to Binary
+Numbers}\label{converting-decimal-numbers-to-binary-numbers}
+
+    컴퓨터를 다루다보면 분명 이진수를 접하게 될 것이다. 십진수 233은 이진수
+11101001에 해당한다. 또, 각각 다음과 같이 표현할 수 있다.
+
+\(2 \times 10^2 + 3 \times 10^1 + 3 \times 10^0\)
+
+\(1 \times 2^7 + 1 \times 2^6 + 1 \times 2^5 + 0 \times 2^4 + 1 \times 2^3 + 0 \times 2^2 + 0 \times 2^1 + 1 \times 2^0\)
+
+    십진수를 이진수로 바꾸는 것은, 2로 나눗셈을 하며 계산할 수 있다. 첫
+나눗셈은 해당 수가 짝수인지, 홀수인지를 결정한다. 짝수라면, 첫 나눗셈의
+나머지는 0일 것이고, 이진수의 첫 자리(가장 오른 쪽 수)는 0이 될 것이다.
+나눗셈을 반복하며 나머지가 발생하면(홀수) 해당 자리수에 1을, 나머지가
+없다면(짝수) 0을 적어내려간다.
+
+    \begin{verbatim}
+<figcaption>Figure 1. Decimal To Binary</figcaption>
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{def} \PY{n+nf}{divideBy2}\PY{p}{(}\PY{n}{decimal}\PY{p}{)} \PY{p}{:}
+             \PY{n}{remstack} \PY{o}{=} \PY{n}{Stack}\PY{p}{(}\PY{p}{)}
+         
+             \PY{k}{while} \PY{n}{decimal} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{p}{:}
+                 \PY{n}{rem} \PY{o}{=} \PY{n}{decimal} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2}
+                 \PY{n}{remstack}\PY{o}{.}\PY{n}{push}\PY{p}{(}\PY{n}{rem}\PY{p}{)}
+                 \PY{n}{decimal} \PY{o}{=} \PY{n}{decimal} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+         
+             \PY{n}{binString} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
+             \PY{k}{while} \PY{o+ow}{not} \PY{n}{remstack}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)} \PY{p}{:}
+                 \PY{n}{binString} \PY{o}{=} \PY{n}{binString} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{remstack}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+             \PY{k}{return} \PY{n}{binString}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{divideBy2}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+101010
+
+    \end{Verbatim}
+
+    10진수를 변경하는 것은 기본적으로 base로 나누는 것에서 시작하는 것이기
+때문에 같은 로직을 이용해 16진수까지 바꿀 수 있는 알고리즘을 만들 수
+있습니다. 10부터 15까지의 숫자를 A부터 F로 대응하여 표현할 수 있습니다.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k}{def} \PY{n+nf}{baseConverter}\PY{p}{(}\PY{n}{decimal}\PY{p}{,} \PY{n}{base}\PY{p}{)} \PY{p}{:}
+             \PY{n}{digits} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{0123456789ABCDEF}\PY{l+s+s2}{\PYZdq{}}
+         
+             \PY{n}{remstack} \PY{o}{=} \PY{n}{Stack}\PY{p}{(}\PY{p}{)}
+         
+             \PY{k}{while} \PY{n}{decimal} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{p}{:}
+                 \PY{n}{rem} \PY{o}{=} \PY{n}{decimal} \PY{o}{\PYZpc{}} \PY{n}{base}
+                 \PY{n}{remstack}\PY{o}{.}\PY{n}{push}\PY{p}{(}\PY{n}{rem}\PY{p}{)}
+                 \PY{n}{decimal} \PY{o}{=} \PY{n}{decimal} \PY{o}{/}\PY{o}{/} \PY{n}{base}
+         
+             \PY{n}{newString} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
+             \PY{k}{while} \PY{o+ow}{not} \PY{n}{remstack}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)} \PY{p}{:}
+                 \PY{n}{newString} \PY{o}{=} \PY{n}{newString} \PY{o}{+} \PY{n}{digits}\PY{p}{[}\PY{n}{remstack}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+         
+             \PY{k}{return} \PY{n}{newString}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{baseConverter}\PY{p}{(}\PY{l+m+mi}{25}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+19
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{baseConverter}\PY{p}{(}\PY{l+m+mi}{315}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+13B
+
+    \end{Verbatim}
+
+    \subsubsection{3.10 What is a Queue?}\label{what-is-a-queue}
+
+    Queue는 'rear'라고 불리는 하나의 end에서 아이템 삽입이 이루어지고,
+'front'라 불리는 end에서 아이템 제거(배출)가 일어난다. Stack과는 다르게
+\textbf{FIFO(First in First out)} 방식의 자료구조이다.
+
+이를 설명할 수 있는 가장 쉬운 예제 중 하나는, 우리가 무언가를 하기
+위해(물건을 계산하거나 영화를 관람하는 것) 줄을 서는 것을 생각하면 된다.
+먼저 줄을 선 사람(item)이 먼저 입장(served)을 하고, 늦게 줄을 선 사람이
+나중에 입장한다.
+
+    \begin{verbatim}
+<figcaption>Figure 2. Concept of Queue</figcaption>
+\end{verbatim}
+
+    컴퓨터에서도 queue 형태의 자료구조가 사용된다. 우리가 랩실에서 무언가를
+프린트하려고 할 때, 프린터의 queue에 작업을 요청받은 순서대로 작업을
+쌓고, 요청 순선대로 프린트 처리를 한다.
+
+    \subsubsection{3.11 The Queue Abstract Data
+Type}\label{the-queue-abstract-data-type}
+
+    Queue abstract data type은 다음과 같은 구조와 method를 갖는다.
+
+    \begin{itemize}
+\tightlist
+\item
+  \texttt{Queue()} : 비어있는 새로운 queue 객체를 만든다. 파라미터가
+  필요하지 않다.
+\item
+  \texttt{enqueue(item)} : 큐의 rear(뒤쪽 end)에 새로운 아이템을
+  추가한다.
+\item
+  \texttt{dequeue()} : 큐의 front에 있는 item을 반환하고, queue에서
+  아이템을 삭제한다.
+\item
+  \texttt{isEmpty()} : 큐가 비어있는지 여부를 boolean으로 반환한다.
+\item
+  \texttt{size()} : 큐에 있는 아이템 수를 반환한다.
+\end{itemize}
+
+    \begin{verbatim}
+<figcaption>Table 1. Methods of queue</figcaption>
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{k+kn}{from} \PY{n+nn}{structures}\PY{n+nn}{.}\PY{n+nn}{Queue} \PY{k}{import} \PY{n}{Queue}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{q}\PY{o}{=}\PY{n}{Queue}\PY{p}{(}\PY{p}{)}
+         \PY{n}{q}\PY{o}{.}\PY{n}{enqueue}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{q}\PY{o}{.}\PY{n}{enqueue}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{q}\PY{o}{.}\PY{n}{enqueue}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{q}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{q}\PY{o}{.}\PY{n}{isEmpty}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} False
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{q}\PY{o}{.}\PY{n}{enqueue}\PY{p}{(}\PY{l+m+mf}{8.4}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{q}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[8.4, True, 'dog', 4]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{q}\PY{o}{.}\PY{n}{dequeue}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}39}]:} 4
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{q}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[8.4, True, 'dog']
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{q}\PY{o}{.}\PY{n}{dequeue}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} 'dog'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{q}\PY{o}{.}\PY{n}{items}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[8.4, True]
+
+    \end{Verbatim}
+
+    \subsubsection{Simulation : Hot Potato}\label{simulation-hot-potato}
+
+    Queue가 현실에서 어떻게 사용되는지 알아보기 위해 Hot Potato라는 게임을
+생각해보자. 이 게임에서, 참여자들은 가능한 한 빨리 옆 이웃에게 item을
+전달해야 한다. 특정 포인트가 되면, item(potato)을 가지고 있는 참여자는
+게임에서 제외된다. 한 사람만 남을 때까지 이 작업을 반복한다.
+
+우리는 이 Hot Potato 게임을 시뮬레이션해볼 것이다. 우리의 queue는
+참여자들의 이름을 input으로 받고, num이라는 parameter를 받아, num만큼
+item이 전달된 뒤 potato를 가진 참여자의 이름을 큐에서 삭제할 것이다.
+
+    \begin{verbatim}
+<figcaption>Figure 3. Hot Potato Game</figcaption>
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{k}{def} \PY{n+nf}{hotPotato}\PY{p}{(}\PY{n}{namelist}\PY{p}{,} \PY{n}{num}\PY{p}{)} \PY{p}{:}
+             \PY{n}{simqueue} \PY{o}{=} \PY{n}{Queue}\PY{p}{(}\PY{p}{)}
+             \PY{k}{for} \PY{n}{name} \PY{o+ow}{in} \PY{n}{namelist} \PY{p}{:}
+                 \PY{n}{simqueue}\PY{o}{.}\PY{n}{enqueue}\PY{p}{(}\PY{n}{name}\PY{p}{)}
+         
+             \PY{k}{while} \PY{n}{simqueue}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mi}{1} \PY{p}{:}
+                 \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num}\PY{p}{)} \PY{p}{:}
+                     \PY{n}{simqueue}\PY{o}{.}\PY{n}{enqueue}\PY{p}{(}\PY{n}{simqueue}\PY{o}{.}\PY{n}{dequeue}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+                 \PY{n}{eliminated} \PY{o}{=} \PY{n}{simqueue}\PY{o}{.}\PY{n}{dequeue}\PY{p}{(}\PY{p}{)}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ is eliminated!}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{eliminated}\PY{p}{)}\PY{p}{)}
+         
+             \PY{k}{return} \PY{n}{simqueue}\PY{o}{.}\PY{n}{dequeue}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{hotPotato}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bill}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{David}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Susan}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jane}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Kent}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Brad}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+David is eliminated!
+Kent is eliminated!
+Jane is eliminated!
+Bill is eliminated!
+Brad is eliminated!
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} 'Susan'
+\end{Verbatim}
+            
+    \begin{verbatim}
+<figcaption>Figure 4. Hot Potato Game with Queue</figcaption>
+\end{verbatim}
 
     \paragraph{References}\label{references}
 
 \begin{itemize}
-\tightlist
 \item
-  figure1, 2, 3 :
-  https://ko.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/asymptotic-notation
+  Figure 1 :
+  http://interactivepython.org/runestone/static/pythonds/BasicDS/ConvertingDecimalNumberstoBinaryNumbers.html
 \item
-  table 1 :
-  http://interactivepython.org/runestone/static/pythonds/AlgorithmAnalysis/Lists.html
+  Figure 2 :
+  http://interactivepython.org/runestone/static/pythonds/BasicDS/WhatIsaQueue.html
 \item
-  table 2 :
-  http://interactivepython.org/runestone/static/pythonds/AlgorithmAnalysis/Dictionaries.html
+  Figure 3, 4 :
+  http://interactivepython.org/runestone/static/pythonds/BasicDS/SimulationHotPotato.html
+\item
+  Table 1 :
+  http://interactivepython.org/runestone/static/pythonds/BasicDS/TheQueueAbstractDataType.html
 \end{itemize}
 
 
